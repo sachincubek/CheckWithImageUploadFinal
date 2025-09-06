@@ -1,0 +1,1090 @@
+2025-09-05 16:40:46.981 +05:30 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-09-05 16:40:47.231 +05:30 [INF] Executed DbCommand (226ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT GET_LOCK('__p0mcn3jw8bc65mto_EFMigrationsLock', 259200)
+2025-09-05 16:40:47.806 +05:30 [INF] Executed DbCommand (309ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+    `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:50.111 +05:30 [INF] Executed DbCommand (220ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='p0mcn3jw8bc65mto' AND TABLE_NAME='__EFMigrationsHistory';
+2025-09-05 16:40:50.342 +05:30 [INF] Executed DbCommand (230ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+2025-09-05 16:40:50.348 +05:30 [INF] Applying migration '20250905111014_InitialCreate'.
+2025-09-05 16:40:50.608 +05:30 [INF] Executed DbCommand (233ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER DATABASE CHARACTER SET utf8mb4;
+2025-09-05 16:40:50.871 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetRoles` (
+    `Id` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `Name` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `NormalizedName` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `ConcurrencyStamp` longtext CHARACTER SET utf8mb4 NULL,
+    CONSTRAINT `PK_AspNetRoles` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:51.148 +05:30 [INF] Executed DbCommand (277ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetUsers` (
+    `Id` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `FullName` longtext CHARACTER SET utf8mb4 NULL,
+    `Pincode` longtext CHARACTER SET utf8mb4 NULL,
+    `ProfileImageUrl` longtext CHARACTER SET utf8mb4 NULL,
+    `IsPaid` tinyint(1) NOT NULL,
+    `UserName` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `NormalizedUserName` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `Email` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `NormalizedEmail` varchar(256) CHARACTER SET utf8mb4 NULL,
+    `EmailConfirmed` tinyint(1) NOT NULL,
+    `PasswordHash` longtext CHARACTER SET utf8mb4 NULL,
+    `SecurityStamp` longtext CHARACTER SET utf8mb4 NULL,
+    `ConcurrencyStamp` longtext CHARACTER SET utf8mb4 NULL,
+    `PhoneNumber` longtext CHARACTER SET utf8mb4 NULL,
+    `PhoneNumberConfirmed` tinyint(1) NOT NULL,
+    `TwoFactorEnabled` tinyint(1) NOT NULL,
+    `LockoutEnd` datetime(6) NULL,
+    `LockoutEnabled` tinyint(1) NOT NULL,
+    `AccessFailedCount` int NOT NULL,
+    CONSTRAINT `PK_AspNetUsers` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:51.407 +05:30 [INF] Executed DbCommand (259ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Categories` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` longtext CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_Categories` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:51.668 +05:30 [INF] Executed DbCommand (261ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Contacts` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Name` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Email` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Subject` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Message` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    `UpdatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Contacts` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:51.932 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Feedbacks` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `UserName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Email` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Rating` int NOT NULL,
+    `Comments` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    `UpdatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Feedbacks` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:52.194 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `OtpCodes` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `PhoneNumber` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Code` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `ExpiresAt` datetime(6) NOT NULL,
+    `Used` tinyint(1) NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_OtpCodes` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:52.456 +05:30 [INF] Executed DbCommand (262ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Requests` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `RequesterName` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `RequesterContact` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Description` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedByUserId` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `RequestedAt` datetime(6) NOT NULL,
+    `IsFulfilled` tinyint(1) NOT NULL,
+    CONSTRAINT `PK_Requests` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:52.719 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Sliders` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Title` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `ImageUrl` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `RedirectUrl` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `IsActive` tinyint(1) NOT NULL,
+    `IsPaid` tinyint(1) NOT NULL,
+    `StartDate` datetime(6) NOT NULL,
+    `EndDate` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Sliders` PRIMARY KEY (`Id`)
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:52.994 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetRoleClaims` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `RoleId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `ClaimType` longtext CHARACTER SET utf8mb4 NULL,
+    `ClaimValue` longtext CHARACTER SET utf8mb4 NULL,
+    CONSTRAINT `PK_AspNetRoleClaims` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_AspNetRoleClaims_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:53.270 +05:30 [INF] Executed DbCommand (276ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetUserClaims` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `UserId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `ClaimType` longtext CHARACTER SET utf8mb4 NULL,
+    `ClaimValue` longtext CHARACTER SET utf8mb4 NULL,
+    CONSTRAINT `PK_AspNetUserClaims` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_AspNetUserClaims_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:53.540 +05:30 [INF] Executed DbCommand (270ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetUserLogins` (
+    `LoginProvider` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `ProviderKey` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `ProviderDisplayName` longtext CHARACTER SET utf8mb4 NULL,
+    `UserId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_AspNetUserLogins` PRIMARY KEY (`LoginProvider`, `ProviderKey`),
+    CONSTRAINT `FK_AspNetUserLogins_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:53.812 +05:30 [INF] Executed DbCommand (272ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetUserRoles` (
+    `UserId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `RoleId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    CONSTRAINT `PK_AspNetUserRoles` PRIMARY KEY (`UserId`, `RoleId`),
+    CONSTRAINT `FK_AspNetUserRoles_AspNetRoles_RoleId` FOREIGN KEY (`RoleId`) REFERENCES `AspNetRoles` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_AspNetUserRoles_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:54.075 +05:30 [INF] Executed DbCommand (263ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `AspNetUserTokens` (
+    `UserId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `LoginProvider` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `Name` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `Value` longtext CHARACTER SET utf8mb4 NULL,
+    CONSTRAINT `PK_AspNetUserTokens` PRIMARY KEY (`UserId`, `LoginProvider`, `Name`),
+    CONSTRAINT `FK_AspNetUserTokens_AspNetUsers_UserId` FOREIGN KEY (`UserId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:40:54.297 +05:30 [ERR] Failed executing DbCommand (221ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE `Books` (
+    `Id` int NOT NULL AUTO_INCREMENT,
+    `Title` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Author` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Description` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Price` decimal(65,30) NOT NULL,
+    `IsForSale` tinyint(1) NOT NULL,
+    `IsForDonate` tinyint(1) NOT NULL,
+    `IsActive` tinyint(1) NOT NULL,
+    `ImageUrl` longtext CHARACTER SET utf8mb4 NULL,
+    `ImagePublicId` longtext CHARACTER SET utf8mb4 NULL,
+    `CategoryId` int NOT NULL,
+    `OwnerId` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT `PK_Books` PRIMARY KEY (`Id`),
+    CONSTRAINT `FK_Books_AspNetUsers_OwnerId` FOREIGN KEY (`OwnerId`) REFERENCES `AspNetUsers` (`Id`) ON DELETE CASCADE,
+    CONSTRAINT `FK_Books_Categories_CategoryId` FOREIGN KEY (`CategoryId`) REFERENCES `Categories` (`Id`) ON DELETE CASCADE
+) CHARACTER SET=utf8mb4;
+2025-09-05 16:41:34.911 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 16:41:35.205 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 16:41:35.205 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 16:41:35.272 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 16:41:35.272 +05:30 [INF] Hosting environment: Development
+2025-09-05 16:41:35.272 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 16:41:40.170 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 16:41:42.432 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2267.2295ms
+2025-09-05 16:41:42.436 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 16:41:42.503 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 66.1595ms
+2025-09-05 16:41:42.514 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 16:41:42.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 16:41:42.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 16:41:42.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 16:41:42.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 16:41:42.525 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 16:41:42.526 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 16:41:42.532 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 7.2233ms
+2025-09-05 16:41:42.554 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 28.5124ms
+2025-09-05 16:41:42.558 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 33.2817ms
+2025-09-05 16:41:42.566 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 52.3581ms
+2025-09-05 16:41:42.566 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 40.3732ms
+2025-09-05 16:41:42.573 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 48.6443ms
+2025-09-05 16:41:42.605 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 79.3659ms
+2025-09-05 16:41:42.704 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 16:41:42.719 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 15.0583ms
+2025-09-05 16:41:42.721 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/favicon-32x32.png - null null
+2025-09-05 16:41:42.722 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/favicon-32x32.png - 200 628 image/png 2.0973ms
+2025-09-05 16:53:47.226 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 16:53:47.503 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 16:53:47.504 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 16:53:47.575 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 16:53:47.575 +05:30 [INF] Hosting environment: Development
+2025-09-05 16:53:47.575 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 16:53:48.095 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 16:53:50.299 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2211.8939ms
+2025-09-05 16:53:50.303 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 16:53:50.381 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 78.2636ms
+2025-09-05 16:53:50.386 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 16:53:50.387 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 16:53:50.395 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 16:53:50.395 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 16:53:50.395 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 16:53:50.395 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 16:53:50.400 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 5.2129ms
+2025-09-05 16:53:50.401 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 16:53:50.428 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 30.9694ms
+2025-09-05 16:53:50.437 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 49.4109ms
+2025-09-05 16:53:50.447 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 61.8934ms
+2025-09-05 16:53:50.447 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 52.6108ms
+2025-09-05 16:53:50.450 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 57.8372ms
+2025-09-05 16:53:50.476 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 75.4758ms
+2025-09-05 16:53:50.602 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 16:53:50.613 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.5736ms
+2025-09-05 16:55:35.416 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/register - application/json 113
+2025-09-05 16:55:35.435 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:55:35.461 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BookFinalAPI.DTOs.Auth.RegisterDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 16:55:41.586 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI) in 6123.0407ms
+2025-09-05 16:55:41.587 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:55:41.589 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'BookFinalAPI.Services.IOTPService' while attempting to activate 'BookFinalAPI.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 16:55:41.617 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/register - 500 null text/plain; charset=utf-8 6203.5747ms
+2025-09-05 16:56:23.870 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/register - application/json 113
+2025-09-05 16:56:23.883 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:56:23.883 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BookFinalAPI.DTOs.Auth.RegisterDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 16:56:25.320 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI) in 1434.4799ms
+2025-09-05 16:56:25.320 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:56:25.320 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'BookFinalAPI.Services.IOTPService' while attempting to activate 'BookFinalAPI.Controllers.AuthController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 16:56:25.321 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/register - 500 null text/plain; charset=utf-8 1451.6191ms
+2025-09-05 16:58:22.731 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 16:58:22.928 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 16:58:22.928 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 16:58:22.982 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 16:58:22.982 +05:30 [INF] Hosting environment: Development
+2025-09-05 16:58:22.982 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 16:58:23.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 16:58:25.933 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2165.194ms
+2025-09-05 16:58:25.937 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 16:58:26.001 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 64.2524ms
+2025-09-05 16:58:26.016 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 16:58:26.016 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 16:58:26.017 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 16:58:26.017 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 16:58:26.016 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 16:58:26.018 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 16:58:26.022 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 5.7338ms
+2025-09-05 16:58:26.027 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 16:58:26.074 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 29.4439ms
+2025-09-05 16:58:26.081 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 64.0196ms
+2025-09-05 16:58:26.092 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 74.8843ms
+2025-09-05 16:58:26.092 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 76.1631ms
+2025-09-05 16:58:26.101 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 85.3322ms
+2025-09-05 16:58:26.119 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 93.7586ms
+2025-09-05 16:58:26.219 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 16:58:26.233 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 14.1628ms
+2025-09-05 16:58:53.515 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/register - application/json 113
+2025-09-05 16:58:53.529 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:58:53.547 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BookFinalAPI.DTOs.Auth.RegisterDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 16:58:58.470 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI) in 4921.276ms
+2025-09-05 16:58:58.471 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 16:58:58.473 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.MissingMethodException: Method not found: 'Void AutoMapper.MapperConfiguration..ctor(AutoMapper.MapperConfigurationExpression)'.
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_2(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitRootCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.CreateServiceAccessor(ServiceIdentifier serviceIdentifier)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.<>c.<AddAutoMapperClasses>b__12_3(IServiceProvider sp)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitFactory(FactoryCallSite factoryCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at lambda_method9(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 16:58:58.493 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/register - 500 null text/plain; charset=utf-8 4977.3576ms
+2025-09-05 17:02:30.325 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:02:30.509 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:02:30.509 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:02:30.569 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:02:30.569 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:02:30.569 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:02:31.445 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:02:33.633 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2193.049ms
+2025-09-05 17:02:33.637 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:02:33.708 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 70.681ms
+2025-09-05 17:02:33.725 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:02:33.725 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:02:33.725 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:02:33.725 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:02:33.727 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:02:33.727 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:02:33.752 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:02:33.756 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 27.9449ms
+2025-09-05 17:02:33.797 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 70.8297ms
+2025-09-05 17:02:33.803 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 77.7068ms
+2025-09-05 17:02:33.814 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 88.4743ms
+2025-09-05 17:02:33.814 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 88.2393ms
+2025-09-05 17:02:33.821 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 95.4169ms
+2025-09-05 17:02:33.839 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 87.0266ms
+2025-09-05 17:02:33.946 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:02:33.958 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.0446ms
+2025-09-05 17:02:48.959 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/register - application/json 113
+2025-09-05 17:02:48.973 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 17:02:48.990 +05:30 [INF] Route matched with {action = "Register", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(BookFinalAPI.DTOs.Auth.RegisterDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 17:03:04.851 +05:30 [INF] Executed DbCommand (329ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:03:11.751 +05:30 [INF] Executed DbCommand (288ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:03:12.447 +05:30 [INF] Executed DbCommand (289ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (Size = 4000), @p6='?' (DbType = Boolean), @p7='?' (DbType = Boolean), @p8='?' (DbType = DateTimeOffset), @p9='?' (Size = 256), @p10='?' (Size = 256), @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `AspNetUsers` (`Id`, `AccessFailedCount`, `ConcurrencyStamp`, `Email`, `EmailConfirmed`, `FullName`, `IsPaid`, `LockoutEnabled`, `LockoutEnd`, `NormalizedEmail`, `NormalizedUserName`, `PasswordHash`, `PhoneNumber`, `PhoneNumberConfirmed`, `Pincode`, `ProfileImageUrl`, `SecurityStamp`, `TwoFactorEnabled`, `UserName`)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18);
+2025-09-05 17:03:15.845 +05:30 [INF] Executed DbCommand (285ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Name`, `a`.`NormalizedName`
+FROM `AspNetRoles` AS `a`
+WHERE `a`.`NormalizedName` = @__normalizedName_0
+LIMIT 1
+2025-09-05 17:03:17.019 +05:30 [INF] Executed DbCommand (285ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Name`, `a`.`NormalizedName`
+FROM `AspNetRoles` AS `a`
+WHERE `a`.`NormalizedName` = @__normalizedName_0
+LIMIT 1
+2025-09-05 17:03:17.629 +05:30 [INF] Executed DbCommand (310ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET AUTOCOMMIT = 1;
+INSERT INTO `AspNetRoles` (`Id`, `ConcurrencyStamp`, `Name`, `NormalizedName`)
+VALUES (@p0, @p1, @p2, @p3);
+2025-09-05 17:03:18.798 +05:30 [INF] Executed DbCommand (281ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Name`, `a`.`NormalizedName`
+FROM `AspNetRoles` AS `a`
+WHERE `a`.`NormalizedName` = @__normalizedRoleName_0
+LIMIT 2
+2025-09-05 17:03:19.398 +05:30 [INF] Executed DbCommand (283ms) [Parameters=[@__p_0='?' (Size = 255), @__p_1='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`UserId`, `a`.`RoleId`
+FROM `AspNetUserRoles` AS `a`
+WHERE (`a`.`UserId` = @__p_0) AND (`a`.`RoleId` = @__p_1)
+LIMIT 1
+2025-09-05 17:03:19.968 +05:30 [INF] Executed DbCommand (285ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`ConcurrencyStamp`, `a`.`Name`, `a`.`NormalizedName`
+FROM `AspNetRoles` AS `a`
+WHERE `a`.`NormalizedName` = @__normalizedRoleName_0
+LIMIT 2
+2025-09-05 17:03:20.542 +05:30 [INF] Executed DbCommand (284ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:03:21.413 +05:30 [INF] Executed DbCommand (286ms) [Parameters=[@p0='?' (Size = 255), @p1='?' (Size = 255), @p20='?' (Size = 255), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p21='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 256), @p11='?' (Size = 256), @p12='?' (Size = 4000), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO `AspNetUserRoles` (`RoleId`, `UserId`)
+VALUES (@p0, @p1);
+UPDATE `AspNetUsers` SET `AccessFailedCount` = @p2, `ConcurrencyStamp` = @p3, `Email` = @p4, `EmailConfirmed` = @p5, `FullName` = @p6, `IsPaid` = @p7, `LockoutEnabled` = @p8, `LockoutEnd` = @p9, `NormalizedEmail` = @p10, `NormalizedUserName` = @p11, `PasswordHash` = @p12, `PhoneNumber` = @p13, `PhoneNumberConfirmed` = @p14, `Pincode` = @p15, `ProfileImageUrl` = @p16, `SecurityStamp` = @p17, `TwoFactorEnabled` = @p18, `UserName` = @p19
+WHERE `Id` = @p20 AND `ConcurrencyStamp` = @p21;
+SELECT ROW_COUNT();
+2025-09-05 17:03:25.266 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-05 17:03:25.272 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI) in 36279.4945ms
+2025-09-05 17:03:25.272 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Register (BookFinalAPI)'
+2025-09-05 17:03:25.278 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/register - 200 null application/json; charset=utf-8 36318.8981ms
+2025-09-05 17:08:28.251 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:08:28.540 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:08:28.541 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:08:28.722 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:08:28.722 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:08:28.722 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:08:29.371 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:08:31.665 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2302.9523ms
+2025-09-05 17:08:31.669 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:08:31.743 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 72.7786ms
+2025-09-05 17:08:31.753 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:08:31.753 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:08:31.753 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:08:31.753 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:08:31.754 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:08:31.754 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:08:31.754 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:08:31.757 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 3.5062ms
+2025-09-05 17:08:31.795 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 40.0654ms
+2025-09-05 17:08:31.799 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 46.0209ms
+2025-09-05 17:08:31.809 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 55.8786ms
+2025-09-05 17:08:31.809 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 55.7341ms
+2025-09-05 17:08:31.815 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 62.2439ms
+2025-09-05 17:08:31.835 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.3578ms
+2025-09-05 17:08:31.972 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:08:31.987 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 14.6134ms
+2025-09-05 17:10:29.246 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 17:10:29.262 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:10:29.282 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 17:10:37.855 +05:30 [INF] Executed DbCommand (275ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:10:37.941 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2025-09-05 17:10:37.944 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 8660.105ms
+2025-09-05 17:10:37.944 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:10:37.949 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 400 null text/plain; charset=utf-8 8703.4614ms
+2025-09-05 17:14:17.342 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:14:17.556 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:14:17.556 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:14:17.618 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:14:17.618 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:14:17.618 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:14:18.312 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:14:20.485 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2181.4446ms
+2025-09-05 17:14:20.491 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:14:20.569 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 77.9777ms
+2025-09-05 17:14:20.574 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:14:20.574 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:14:20.575 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:14:20.575 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:14:20.575 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:14:20.575 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:14:20.577 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 1.9668ms
+2025-09-05 17:14:20.588 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:14:20.612 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 36.6386ms
+2025-09-05 17:14:20.617 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 42.0926ms
+2025-09-05 17:14:20.624 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 49.1255ms
+2025-09-05 17:14:20.624 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 49.8446ms
+2025-09-05 17:14:20.629 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 54.7087ms
+2025-09-05 17:14:20.647 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 58.8631ms
+2025-09-05 17:14:20.763 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:14:20.774 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.6341ms
+2025-09-05 17:15:01.195 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 17:15:01.204 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:15:01.220 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 17:15:12.644 +05:30 [INF] Executed DbCommand (260ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:15:20.322 +05:30 [INF] Executed DbCommand (235ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 17:15:21.452 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 20229.4476ms
+2025-09-05 17:15:21.453 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:15:21.457 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ApplicationUser -> UserDto
+BookFinalAPI.Models.ApplicationUser -> BookFinalAPI.DTOs.UserDto
+   at lambda_method164(Closure, Object, UserDto, ResolutionContext)
+   at BookFinalAPI.Controllers.AuthController.Login(LoginDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\AuthController.cs:line 137
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 17:15:21.515 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 500 null text/plain; charset=utf-8 20320.5339ms
+2025-09-05 17:27:11.388 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:27:11.680 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:27:11.681 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:27:11.737 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:27:11.737 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:27:11.737 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:27:12.718 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:27:14.974 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2260.5513ms
+2025-09-05 17:27:14.978 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:27:15.044 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 66.6837ms
+2025-09-05 17:27:15.053 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:27:15.053 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:27:15.053 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:27:15.054 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:27:15.054 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:27:15.055 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:27:15.091 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 3.9917ms
+2025-09-05 17:27:15.093 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:27:15.168 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 112.8414ms
+2025-09-05 17:27:15.174 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 121.2505ms
+2025-09-05 17:27:15.185 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 131.7193ms
+2025-09-05 17:27:15.185 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 132.2023ms
+2025-09-05 17:27:15.195 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 141.9035ms
+2025-09-05 17:27:15.208 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 114.6918ms
+2025-09-05 17:27:15.316 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:27:15.327 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 12.1721ms
+2025-09-05 17:27:26.167 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 17:27:26.178 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:27:26.194 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 17:27:33.343 +05:30 [INF] Executed DbCommand (246ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:27:34.307 +05:30 [INF] Executed DbCommand (225ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 17:27:41.804 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 15607.7904ms
+2025-09-05 17:27:41.805 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:27:41.807 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+ApplicationUser -> UserDto
+BookFinalAPI.Models.ApplicationUser -> BookFinalAPI.DTOs.UserDto
+   at lambda_method164(Closure, Object, UserDto, ResolutionContext)
+   at BookFinalAPI.Controllers.AuthController.Login(LoginDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\AuthController.cs:line 137
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 17:27:41.852 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 500 null text/plain; charset=utf-8 15684.7254ms
+2025-09-05 17:40:24.637 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:40:24.791 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:40:24.791 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:40:24.839 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:40:24.840 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:40:24.840 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:40:25.504 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:40:27.661 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2162.2457ms
+2025-09-05 17:40:27.666 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:40:27.727 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 61.3814ms
+2025-09-05 17:40:27.739 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:40:27.739 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:40:27.740 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:40:27.740 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:40:27.741 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:40:27.759 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 17.8115ms
+2025-09-05 17:40:27.761 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:40:27.761 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:40:27.843 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 82.8621ms
+2025-09-05 17:40:27.847 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 106.9489ms
+2025-09-05 17:40:27.855 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 113.8065ms
+2025-09-05 17:40:27.855 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 116.2626ms
+2025-09-05 17:40:27.863 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 122.9673ms
+2025-09-05 17:40:27.877 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 116.2081ms
+2025-09-05 17:40:27.984 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:40:27.996 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.6264ms
+2025-09-05 17:41:30.343 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 17:41:30.363 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:41:30.375 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 17:41:39.824 +05:30 [INF] Executed DbCommand (245ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 17:41:40.807 +05:30 [INF] Executed DbCommand (226ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 17:41:45.032 +05:30 [INF] Executed DbCommand (225ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 17:41:47.348 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[BookFinalAPI.DTOs.UserDto, BookFinalAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-05 17:41:47.355 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 16978.2687ms
+2025-09-05 17:41:47.355 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 17:41:47.360 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 200 null application/json; charset=utf-8 17017.0877ms
+2025-09-05 17:53:48.695 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 17:53:48.921 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 17:53:48.921 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 17:53:49.042 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 17:53:49.042 +05:30 [INF] Hosting environment: Development
+2025-09-05 17:53:49.042 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 17:53:50.020 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 17:53:52.263 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2247.7844ms
+2025-09-05 17:53:52.268 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 17:53:52.346 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 78.669ms
+2025-09-05 17:53:52.357 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 17:53:52.368 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 17:53:52.368 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 17:53:52.368 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 17:53:52.369 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 17:53:52.369 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 17:53:52.376 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 17:53:52.380 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 10.7001ms
+2025-09-05 17:53:52.413 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 43.7114ms
+2025-09-05 17:53:52.416 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 47.6324ms
+2025-09-05 17:53:52.425 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 68.7375ms
+2025-09-05 17:53:52.425 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 56.8305ms
+2025-09-05 17:53:52.434 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 65.2664ms
+2025-09-05 17:53:52.450 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 74.1432ms
+2025-09-05 17:53:52.558 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 17:53:52.572 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.9701ms
+2025-09-05 17:56:11.359 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=false&IsForRent=false&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundaryTQsj71IS4C9Kz8Py 136
+2025-09-05 17:56:11.373 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 17:56:11.379 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 17:56:11.379 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=false&IsForRent=false&Mobile=9876543210&Otp=123456 - 302 0 null 20.4583ms
+2025-09-05 17:56:11.382 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dfalse%26IsForRent%3Dfalse%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 17:56:11.384 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dfalse%26IsForRent%3Dfalse%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 2.2691ms
+2025-09-05 17:56:11.385 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 18:51:20.650 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 18:51:20.900 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 18:51:20.900 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 18:51:20.948 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 18:51:20.949 +05:30 [INF] Hosting environment: Development
+2025-09-05 18:51:20.949 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 18:51:22.032 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 18:51:24.256 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2231.4302ms
+2025-09-05 18:51:24.263 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 18:51:24.336 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 73.8457ms
+2025-09-05 18:51:24.345 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 18:51:24.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 18:51:24.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 18:51:24.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 18:51:24.349 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 18:51:24.351 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 18:51:24.360 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 10.73ms
+2025-09-05 18:51:24.360 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 18:51:24.397 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 39.8141ms
+2025-09-05 18:51:24.400 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 50.4104ms
+2025-09-05 18:51:24.408 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 62.4604ms
+2025-09-05 18:51:24.408 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 58.5688ms
+2025-09-05 18:51:24.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 68.4601ms
+2025-09-05 18:51:24.436 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 85.5395ms
+2025-09-05 18:51:24.548 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 18:51:24.555 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 7.9554ms
+2025-09-05 19:03:50.487 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 19:03:50.513 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:03:50.535 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 19:03:59.909 +05:30 [INF] Executed DbCommand (254ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 19:04:00.932 +05:30 [INF] Executed DbCommand (228ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:04:04.654 +05:30 [INF] Executed DbCommand (235ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:04:04.661 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[BookFinalAPI.DTOs.UserDto, BookFinalAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-05 19:04:04.675 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 14138.0819ms
+2025-09-05 19:04:04.676 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:04:04.681 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 200 null application/json; charset=utf-8 14193.9183ms
+2025-09-05 19:09:44.885 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundary4aACVAlMiM87fKXt 136
+2025-09-05 19:09:44.895 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:09:44.903 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:09:44.903 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 20.1484ms
+2025-09-05 19:09:44.907 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:09:44.909 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 1.4177ms
+2025-09-05 19:09:44.909 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:10:45.405 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundary9T0YZuo77i8BZ89I 7897
+2025-09-05 19:10:45.485 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:10:45.485 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:10:45.486 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 80.665ms
+2025-09-05 19:10:45.488 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:10:45.489 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 0.545ms
+2025-09-05 19:10:45.489 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:12:24.451 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Auth/login - application/json 47
+2025-09-05 19:12:24.488 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:12:24.488 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 19:12:32.542 +05:30 [INF] Executed DbCommand (225ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 19:12:33.000 +05:30 [INF] Executed DbCommand (232ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:12:35.745 +05:30 [INF] Executed DbCommand (225ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:12:35.746 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[BookFinalAPI.DTOs.UserDto, BookFinalAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-05 19:12:35.746 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 11257.8581ms
+2025-09-05 19:12:35.746 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:12:35.746 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Auth/login - 200 null application/json; charset=utf-8 11296.2912ms
+2025-09-05 19:13:39.072 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundaryWXz1FppS1NhOQqWc 7897
+2025-09-05 19:13:39.076 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:13:39.077 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:13:39.078 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 5.2508ms
+2025-09-05 19:13:39.083 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:13:39.083 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 0.3716ms
+2025-09-05 19:13:39.083 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:13:40.683 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundarycMQDe3UMB7r40ZMM 7897
+2025-09-05 19:13:40.684 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:13:40.718 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:13:40.718 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 35.3499ms
+2025-09-05 19:13:40.720 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:13:40.721 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 0.3869ms
+2025-09-05 19:13:40.721 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:14:39.929 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundaryMXma5iNkZTtJrngt 7897
+2025-09-05 19:14:39.932 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:14:39.933 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:14:39.933 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 4.7649ms
+2025-09-05 19:14:39.935 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:14:39.936 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 0.6541ms
+2025-09-05 19:14:39.936 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:14:41.079 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - multipart/form-data; boundary=----WebKitFormBoundaryA3fKx0vqDnO2J0N2 7897
+2025-09-05 19:14:41.080 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:14:41.080 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:14:41.080 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books?Title=To%20Kill%20a%20Mockingbird&Author=Harper%20Lee&CategoryId=1&Description=A%20young%20girl%20in%20the%20Deep%20South%20learns%20about%20justice%20and%20racism.&Price=500&IsForSale=true&IsForDonate=true&IsForRent=true&Mobile=9876543210&Otp=123456 - 302 0 null 1.2248ms
+2025-09-05 19:14:41.083 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - null null
+2025-09-05 19:14:41.084 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%3FTitle%3DTo%2520Kill%2520a%2520Mockingbird%26Author%3DHarper%2520Lee%26CategoryId%3D1%26Description%3DA%2520young%2520girl%2520in%2520the%2520Deep%2520South%2520learns%2520about%2520justice%2520and%2520racism.%26Price%3D500%26IsForSale%3Dtrue%26IsForDonate%3Dtrue%26IsForRent%3Dtrue%26Mobile%3D9876543210%26Otp%3D123456 - 404 0 null 1.0667ms
+2025-09-05 19:14:41.084 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:17:45.753 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 19:17:45.949 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 19:17:45.949 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 19:17:46.015 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 19:17:46.015 +05:30 [INF] Hosting environment: Development
+2025-09-05 19:17:46.015 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 19:17:46.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 19:17:48.559 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2177.9989ms
+2025-09-05 19:17:48.565 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 19:17:48.632 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 66.729ms
+2025-09-05 19:17:48.641 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 19:17:48.641 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 19:17:48.641 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 19:17:48.642 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 19:17:48.642 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 19:17:48.644 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 19:17:48.653 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 11.0596ms
+2025-09-05 19:17:48.658 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 19:17:48.679 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 33.99ms
+2025-09-05 19:17:48.687 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 45.3775ms
+2025-09-05 19:17:48.695 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 53.5508ms
+2025-09-05 19:17:48.695 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 53.2246ms
+2025-09-05 19:17:48.702 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 60.049ms
+2025-09-05 19:17:48.714 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.9681ms
+2025-09-05 19:17:48.826 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 19:17:48.838 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.9987ms
+2025-09-05 19:19:06.279 +05:30 [INF] Request starting HTTP/2 POST https://localhost:7037/api/Books - multipart/form-data; boundary=----WebKitFormBoundary33tT1svAbpOLgNOe 8892
+2025-09-05 19:19:06.288 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:19:06.290 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:19:06.291 +05:30 [INF] Request finished HTTP/2 POST https://localhost:7037/api/Books - 302 0 null 12.039ms
+2025-09-05 19:19:06.294 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - null null
+2025-09-05 19:19:06.297 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - 404 0 null 2.5761ms
+2025-09-05 19:19:06.298 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:29:20.806 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books - multipart/form-data; boundary=--------------------------910623507404314625966167 1353
+2025-09-05 19:29:20.808 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:29:20.808 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:29:20.811 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books - 302 0 null 5.9623ms
+2025-09-05 19:29:20.816 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - null null
+2025-09-05 19:29:20.817 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - 404 0 null 0.7008ms
+2025-09-05 19:29:20.817 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:29:35.365 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books - multipart/form-data; boundary=--------------------------048839539732519778507116 1353
+2025-09-05 19:29:35.367 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:29:35.367 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:29:35.367 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books - 302 0 null 2.326ms
+2025-09-05 19:29:35.369 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - null null
+2025-09-05 19:29:35.369 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks - 404 0 null 0.4123ms
+2025-09-05 19:29:35.369 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:29:57.361 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------813050972225398215733183 1353
+2025-09-05 19:29:57.363 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-09-05 19:29:57.363 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-09-05 19:29:57.363 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 405 0 null 1.988ms
+2025-09-05 19:32:24.202 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 19:32:24.389 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 19:32:24.389 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 19:32:24.443 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 19:32:24.443 +05:30 [INF] Hosting environment: Development
+2025-09-05 19:32:24.443 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 19:32:25.478 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 19:32:27.682 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2209.6297ms
+2025-09-05 19:32:27.688 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 19:32:27.758 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 70.3928ms
+2025-09-05 19:32:27.768 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 19:32:27.768 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 19:32:27.768 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 19:32:27.768 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 19:32:27.768 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 19:32:27.771 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 2.3423ms
+2025-09-05 19:32:27.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 19:32:27.774 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 19:32:27.807 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 32.9451ms
+2025-09-05 19:32:27.811 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 42.6065ms
+2025-09-05 19:32:27.819 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 51.1189ms
+2025-09-05 19:32:27.819 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 50.7137ms
+2025-09-05 19:32:27.824 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 56.2256ms
+2025-09-05 19:32:27.839 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 65.3628ms
+2025-09-05 19:32:27.958 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 19:32:27.969 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 11.1611ms
+2025-09-05 19:33:17.920 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Auth/login - application/json 50
+2025-09-05 19:33:17.929 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:33:17.951 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(BookFinalAPI.DTOs.Auth.LoginDto) on controller BookFinalAPI.Controllers.AuthController (BookFinalAPI).
+2025-09-05 19:33:26.417 +05:30 [INF] Executed DbCommand (274ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a`.`Id`, `a`.`AccessFailedCount`, `a`.`ConcurrencyStamp`, `a`.`Email`, `a`.`EmailConfirmed`, `a`.`FullName`, `a`.`IsPaid`, `a`.`LockoutEnabled`, `a`.`LockoutEnd`, `a`.`NormalizedEmail`, `a`.`NormalizedUserName`, `a`.`PasswordHash`, `a`.`PhoneNumber`, `a`.`PhoneNumberConfirmed`, `a`.`Pincode`, `a`.`ProfileImageUrl`, `a`.`SecurityStamp`, `a`.`TwoFactorEnabled`, `a`.`UserName`
+FROM `AspNetUsers` AS `a`
+WHERE `a`.`NormalizedUserName` = @__normalizedUserName_0
+LIMIT 1
+2025-09-05 19:33:27.514 +05:30 [INF] Executed DbCommand (257ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:33:30.181 +05:30 [INF] Executed DbCommand (238ms) [Parameters=[@__userId_0='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT `a0`.`Name`
+FROM `AspNetUserRoles` AS `a`
+INNER JOIN `AspNetRoles` AS `a0` ON `a`.`RoleId` = `a0`.`Id`
+WHERE `a`.`UserId` = @__userId_0
+2025-09-05 19:33:30.188 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`2[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[BookFinalAPI.DTOs.UserDto, BookFinalAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-05 19:33:30.196 +05:30 [INF] Executed action BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI) in 12242.2991ms
+2025-09-05 19:33:30.196 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.AuthController.Login (BookFinalAPI)'
+2025-09-05 19:33:30.201 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Auth/login - 200 null application/json; charset=utf-8 12281.8671ms
+2025-09-05 19:33:52.285 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------543329661843591720375316 1353
+2025-09-05 19:33:52.290 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-09-05 19:33:52.293 +05:30 [INF] AuthenticationScheme: Identity.Application was challenged.
+2025-09-05 19:33:52.293 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 302 0 null 8.013ms
+2025-09-05 19:33:52.295 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%2FCreateBook - null null
+2025-09-05 19:33:52.297 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:7037/Account/Login?ReturnUrl=%2Fapi%2FBooks%2FCreateBook - 404 0 null 1.6236ms
+2025-09-05 19:33:52.297 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:7037/Account/Login, Response status code: 404
+2025-09-05 19:34:40.209 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 19:34:40.383 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 19:34:40.384 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 19:34:40.458 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 19:34:40.458 +05:30 [INF] Hosting environment: Development
+2025-09-05 19:34:40.458 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 19:34:40.809 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 19:34:42.985 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2181.8536ms
+2025-09-05 19:34:42.989 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 19:34:43.058 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 68.0537ms
+2025-09-05 19:34:43.069 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 19:34:43.069 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 19:34:43.069 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 19:34:43.069 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 19:34:43.070 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 19:34:43.072 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 19:34:43.086 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 14.5165ms
+2025-09-05 19:34:43.090 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 19:34:43.143 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 72.909ms
+2025-09-05 19:34:43.151 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 81.5888ms
+2025-09-05 19:34:43.192 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 122.9833ms
+2025-09-05 19:34:43.196 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 126.087ms
+2025-09-05 19:34:43.212 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 140.4011ms
+2025-09-05 19:34:43.231 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 141.5814ms
+2025-09-05 19:34:43.382 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 19:34:43.400 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 18.5066ms
+2025-09-05 19:39:01.399 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------824895731332750487789851 1353
+2025-09-05 19:39:01.410 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:39:01.430 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:39:20.000 +05:30 [INF] Executed action BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI) in 18567.0895ms
+2025-09-05 19:39:20.002 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:39:20.004 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 51
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 19:39:20.054 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 500 null text/plain; charset=utf-8 18655.5625ms
+2025-09-05 19:39:44.088 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------757625906068350385326856 1353
+2025-09-05 19:39:44.092 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:39:44.094 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:39:51.959 +05:30 [INF] Executed action BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI) in 7863.3261ms
+2025-09-05 19:39:51.961 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:39:51.965 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 51
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 19:39:51.967 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 500 null text/plain; charset=utf-8 7879.0976ms
+2025-09-05 19:40:30.103 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------169227526869650275503873 1353
+2025-09-05 19:40:30.105 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:40:30.105 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:40:42.422 +05:30 [INF] Executed action BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI) in 12316.7357ms
+2025-09-05 19:40:42.422 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:40:42.422 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 51
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-05 19:40:42.423 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 500 null text/plain; charset=utf-8 12320.1674ms
+2025-09-05 19:44:00.042 +05:30 [INF] User profile is available. Using 'C:\Users\my.admin\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-09-05 19:44:00.278 +05:30 [INF] Now listening on: https://localhost:7037
+2025-09-05 19:44:00.278 +05:30 [INF] Now listening on: http://localhost:5019
+2025-09-05 19:44:00.356 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-05 19:44:00.357 +05:30 [INF] Hosting environment: Development
+2025-09-05 19:44:00.357 +05:30 [INF] Content root path: C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI
+2025-09-05 19:44:00.993 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger - null null
+2025-09-05 19:44:03.283 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger - 301 0 null 2293.0193ms
+2025-09-05 19:44:03.287 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.html - null null
+2025-09-05 19:44:03.370 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.html - 200 null text/html;charset=utf-8 82.5087ms
+2025-09-05 19:44:03.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - null null
+2025-09-05 19:44:03.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.css - null null
+2025-09-05 19:44:03.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - null null
+2025-09-05 19:44:03.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-05 19:44:03.385 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/index.js - null null
+2025-09-05 19:44:03.402 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - null null
+2025-09-05 19:44:03.413 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/_vs/browserLink - null null
+2025-09-05 19:44:03.427 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.js - 200 null application/javascript;charset=utf-8 38.5267ms
+2025-09-05 19:44:03.465 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_framework/aspnetcore-browser-refresh.js - 200 16509 application/javascript; charset=utf-8 79.25ms
+2025-09-05 19:44:03.472 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/index.css - 200 152 text/css 86.702ms
+2025-09-05 19:44:03.481 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-standalone-preset.js - 200 70860 text/javascript 95.6043ms
+2025-09-05 19:44:03.481 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui-bundle.js - 200 417980 text/javascript 96.2907ms
+2025-09-05 19:44:03.481 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/swagger-ui.css - 200 23647 text/css 96.1086ms
+2025-09-05 19:44:03.507 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/_vs/browserLink - 200 null text/javascript; charset=UTF-8 95.7988ms
+2025-09-05 19:44:03.655 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - null null
+2025-09-05 19:44:03.668 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7037/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.5737ms
+2025-09-05 19:44:08.330 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------940774210001233330043112 1353
+2025-09-05 19:44:08.338 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:44:08.352 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:44:20.552 +05:30 [ERR] AutoMapper mapping failed. Source type: null, Destination type: null
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 53
+2025-09-05 19:44:26.022 +05:30 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType3`5[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-05 19:44:26.031 +05:30 [INF] Executed action BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI) in 17676.322ms
+2025-09-05 19:44:26.031 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:44:26.033 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 400 null application/json; charset=utf-8 17702.9911ms
+2025-09-05 19:44:36.634 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------495958170808330247539452 1353
+2025-09-05 19:44:36.635 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:44:36.635 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:44:51.145 +05:30 [ERR] AutoMapper mapping failed. Source type: null, Destination type: null
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 53
+2025-09-05 19:45:09.371 +05:30 [INF] Executing BadRequestObjectResult, writing value of type '<>f__AnonymousType3`5[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-09-05 19:45:09.372 +05:30 [INF] Executed action BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI) in 32736.2818ms
+2025-09-05 19:45:09.372 +05:30 [INF] Executed endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:45:09.372 +05:30 [INF] Request finished HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - 400 null application/json; charset=utf-8 32738.3837ms
+2025-09-05 19:45:12.100 +05:30 [INF] Request starting HTTP/1.1 POST https://localhost:7037/api/Books/CreateBook - multipart/form-data; boundary=--------------------------487735086955307551297787 1353
+2025-09-05 19:45:12.102 +05:30 [INF] Executing endpoint 'BookFinalAPI.Controllers.BooksController.CreateBook (BookFinalAPI)'
+2025-09-05 19:45:12.102 +05:30 [INF] Route matched with {action = "CreateBook", controller = "Books"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateBook(BookFinalAPI.DTOs.CreateBookDto) on controller BookFinalAPI.Controllers.BooksController (BookFinalAPI).
+2025-09-05 19:45:33.819 +05:30 [ERR] AutoMapper mapping failed. Source type: null, Destination type: null
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateBookDto -> Book
+BookFinalAPI.DTOs.CreateBookDto -> BookFinalAPI.Models.Book
+   at lambda_method27(Closure, Object, Book, ResolutionContext)
+   at BookFinalAPI.Controllers.BooksController.CreateBook(CreateBookDto dto) in C:\Users\my.admin\source\repos\BookFinalAPI\BookFinalAPI\Controllers\BooksController.cs:line 53
