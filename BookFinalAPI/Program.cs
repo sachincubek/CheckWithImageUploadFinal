@@ -8,22 +8,35 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// ----------------------
+// Serilog logging to console (Heroku-friendly)
+// ----------------------
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+// ----------------------
+// Swagger with JWT support
+// ----------------------
 builder.Services.AddSwaggerGen(c =>
 {
-c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookFinalAPI", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "BookFinalAPI", Version = "v1" });
 
-// Add JWT auth to Swagger
-c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-{
-    Name = "Authorization",
-    Type = SecuritySchemeType.ApiKey,
-    Scheme = "Bearer",
-    BearerFormat = "JWT",
-    In = ParameterLocation.Header,
-    Description = "Enter 'Bearer' [space] and then your valid JWT token.\r\nExample: \"Bearer eyJhbGciOi...\""
-});
+    // JWT Bearer auth
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter 'Bearer' [space] and your valid JWT token."
+    });
 
-c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
@@ -38,24 +51,24 @@ c.AddSecurityRequirement(new OpenApiSecurityRequirement
         }
     });
 });
-// Serilog
-Log.Logger = new LoggerConfiguration()
-    .Enrich.FromLogContext()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
-    .CreateLogger();
-builder.Host.UseSerilog();
 
+// ----------------------
+// Database Connection
+// ----------------------
 var configuration = builder.Configuration;
 var services = builder.Services;
 
-// configure MySQL connection string in appsettings.json or environment
-var conn = configuration.GetConnectionString("DefaultConnection");
+// Use environment variable first, fallback to appsettings.json
+var conn = Environment.GetEnvironmentVariable("DefaultConnection") 
+           ?? configuration.GetConnectionString("DefaultConnection");
 
 // Add DbContext with Pomelo MySQL provider
 services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(conn, ServerVersion.AutoDetect(conn)));
 
-// Identity with Roles
+// ----------------------
+// Identity
+// ----------------------
 services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = false;
@@ -64,23 +77,27 @@ services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-// Register OTP Service for DI
-builder.Services.AddScoped<IOTPService, OTPService>();
-
-// AutoMapper — register profiles from this assembly
+// ----------------------
+// Dependency Injection
+// ----------------------
+services.AddScoped<IOTPService, OTPService>();
+services.AddScoped<ICloudinaryService, CloudinaryService>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-// Cloudinary config wrapper
-builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ----------------------
+// Dynamic port for Heroku
+// ----------------------
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://*:{port}");
+
+// ----------------------
+// Middleware
+// ----------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -88,17 +105,16 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
-//    await DbInitializer.SeedAsync(services);
-//}
+// Uncomment if you want to seed the DB on startup
+// using (var scope = app.Services.CreateScope())
+// {
+//     var services = scope.ServiceProvider;
+//     await DbInitializer.SeedAsync(services);
+// }
 
 app.Run();
